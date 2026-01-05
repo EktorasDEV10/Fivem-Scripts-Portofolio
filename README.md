@@ -27,4 +27,7 @@ These scripts focus on optimization, clean code, and unique gameplay mechanics.
 
 ---
 
-_Note: These scripts are for showcase purposes._
+## ⚠️ Disclaimer
+These scripts are part of my development portfolio. Some may require specific dependencies (like `es_extended`) to function in a live environment.
+
+© Konstantinos Ektoras Patrikios
