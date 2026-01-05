@@ -1,0 +1,792 @@
+*{
+    padding: 0;
+    margin: 0;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin: 0%;
+    padding: 0%;
+    font-family: monospace;
+}
+::-webkit-scrollbar {
+    width: 5px;
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 215, 0, 0.8); 
+}
+body,html{
+    height: 100%;
+    margin: 0; 
+    overflow: hidden;
+}
+/* GUNGAME HUD STATS */
+#gungame-stats{
+    position: absolute;
+    bottom: 0%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+#gungame-stats-wrapper{
+    display: flex;
+    justify-content: center;
+    color: white;
+	text-shadow: 0px 0px 5px black;
+}
+#gungame-stats-wrapper > div{
+    font-size: 1.8vh;
+    margin: 0 10px;
+    padding: 3px 15px;
+    background-color: rgba(0, 0, 0, 0.583);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-bottom: none;
+}
+#gungame-stats span{
+    color: orangered;
+}
+/* GUNGAME MAIN UI */
+#gungame{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    perspective: 100px;
+}
+#gungame-buttons{
+    height: 15%;
+    width: 35%;
+    perspective: 100px;
+    gap: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding-bottom: 15px;
+    border-bottom: 1px solid white;
+}
+#gungame-buttons > *{
+    transform: rotateX(2deg);
+    font-size: 1.8vh;
+    flex: 1;
+    height: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: aliceblue;
+    letter-spacing: 1px;
+    font-weight: bold;
+    padding: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+.gungame-selected-button-matches{
+    box-shadow:0px 0px 15px orangered;
+    border: 5px solid orangered;
+}
+.gungame-selected-button-topshooters{
+    box-shadow:0px 0px 15px rgb(0, 123, 255);
+    border: 5px solid rgb(0, 123, 255);
+}
+.gungame-selected-button-winners{
+    box-shadow:0px 0px 15px rgb(220, 188, 12);
+    border: 5px solid rgb(220, 188, 12);
+}
+#gungame-buttons-matches{
+    background-color: orangered;
+}
+#gungame-buttons-topshooters{
+    background-color: rgb(0, 123, 255);
+}
+#gungame-buttons-winners{
+    background-color: rgb(220, 188, 12);
+}
+#gungame-buttons-matches:hover{
+    box-shadow:0px 0px 15px orangered;
+}
+#gungame-buttons-topshooters:hover{
+    box-shadow:0px 0px 15px rgb(0, 123, 255);
+}
+#gungame-buttons-winners:hover{
+    box-shadow:0px 0px 15px rgb(220, 188, 12);
+}
+#gungame-wrapper{
+    width: 45%;
+    height: 50%;
+    perspective: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* GUNGAME MATCHES */
+#gungame-wrapper-matches{
+    height: 100%;
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    transform: rotateX(4deg);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+#gungame-wrapper-box{
+    height: 45%;
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: center;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    color: aliceblue;
+    font-size: 2.5vh;
+    transition: all 0.3s ease-in-out;
+    padding: 5px;
+}
+#gungame-wrapper-box > div{
+    flex: 1;
+    letter-spacing: 1px;
+}
+#gungame-wrapper-box-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    opacity: 1;
+    padding-left: 5px;
+    font-size: 3.0vh;
+    text-decoration: underline;
+}
+#gungame-wrapper-box-info{
+    display: flex;
+    justify-content: space-around;
+}
+.gungame-wrapper-box-info-child{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    height: 100%;
+}
+.gungame-wrapper-box-info-child > div{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#gungame-wrapper-box-info-type-title{
+    font-size: 2.5vh;
+    color: rgb(164, 164, 164);
+}
+.fa-map,.fa-user{
+    color: aliceblue;
+    padding-left: 4px;
+    font-size: 1.5vh;
+    opacity: 1;
+}
+#gungame-wrapper-box-info-type-desc{
+    font-size: 2vh;
+}
+.players{
+    opacity: 0.8;
+    font-weight: bold;
+    color: white;
+}
+.gungame-maxPlayers{
+    font-size: 1.5vh;
+}
+.gungame-activePlayers{
+    color: orangered;
+}
+#gungame-wrapper-box-buttons{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 2.5vh;
+}
+#gungame-wrapper-box-buttons-join{
+    width: 80%;
+    height: 50%;
+    background-color: rgb(65, 65, 65);
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease-in-out;
+}
+#gungame-wrapper-box-buttons-join:hover{
+    background-color: orangered;
+    transform: scale(0.9);
+}
+/* GUNGAME TOP SHOOTERS */
+#gungame-wrapper-topshooters{
+    transform: rotateX(1deg);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.2rem;
+    color: white;
+}
+#gungame-wrapper-topshooters table{
+    height: 100%;
+    width: 70%;
+    text-align: center;
+}
+#gungame-wrapper-topshooters table td{
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    letter-spacing: 2px;
+    font-size: 1.8vh;
+}
+.fa-trophy{
+    font-size: 1.1vh;
+    padding-right: 3px;
+}
+.td-20{
+    width: 10%;
+    max-width: 20%;
+}
+.td-40{
+    width: 20%;
+    max-width: 40%;
+}
+/* GUNGAME WINS */
+#gungame-wrapper-winners{
+    transform: rotateX(1deg);
+    width: 70%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    overflow-y: auto;
+    overflow-x: hidden;
+    gap: 0.2rem;
+    color: white;
+}
+#gungame-wrapper-winners table{
+    height: 80%;
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    text-align: center;
+}
+#gungame-wrapper-winners table tr{
+    width: 100%;
+    height: 30px;
+}
+#gungame-wrapper-winners table td{
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    letter-spacing: 2px;
+    font-size: 1.8vh;
+}
+
+/* GUNGAME PED SELECTOR */
+#gungame-pedselector{
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#peds{
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: 60%;
+    height: 60%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    border: 1px solid rgba(255,255,255,0.3);
+}
+.ped_selection{
+    position: relative;
+    width: 25%;
+    height: 30%;
+    background: rgba(0,0,0,0.7);
+    border: 1px solid rgba(240, 248, 255, 0.452);
+    color: aliceblue;
+    transition: .3s all ease-in-out;
+    margin: 1%;
+}
+.ped_selection:hover{
+    cursor: pointer;
+    transform: scale(0.95);
+    box-shadow: 0px 0px 15px black;
+}
+#ped_selection-image,#ped_selection-text{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#ped-selection-kills{
+    width: 100%;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    color: gold;
+    font-size: 1.3vh;
+}
+#ped_selection-image{
+    height: 80%;
+    border-bottom: 1px solid orange;
+}
+#ped_selection-imagePed{
+    height: 90%;
+}
+.ped_selection-locked{
+    position: absolute;
+    height: 80%;
+    width: 100%;
+    opacity: 0.7;
+    z-index: 1;
+    background-color: rgba(255, 68, 0, 0.363);
+}
+.ped_selection-imagePed-locked{
+    filter: blur(2px);
+}
+#ped_selection-text{
+    height: 19%;
+    background-color: rgba(0,0,0,0.6);
+}
+.fa-user{
+    padding-right: 15px;
+    color: orange;
+    text-shadow: 0px 0px 5px orange;
+}
+/* INGAME LEADERBOARD */
+#gungame-ingame-leaderboard{
+    width: 12%;
+    height: 20%;
+    position: absolute;
+    bottom: 3%;
+    right: 0;
+    background: rgba(0, 0, 0, 0.513);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 0% 5px;
+    font-family: monospace;
+    border: 2px solid rgba(240, 248, 255, 0.452);
+    border-right: 0ch;
+}
+.ingame-leaderboard-row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1;
+    font-size: 1.5vh;
+    color: white;
+    text-shadow: 0px 0px 5px black;
+    width: 100%;
+    height: 15%;
+}
+.ingame-leaderboard-row div{
+    height: 100%;
+    text-align: right;
+    display: flex;
+    align-items: center;
+    word-wrap: break-word;
+}
+.ingame-leaderboard-leftSide{
+    justify-content: flex-start;
+    text-align: left;
+    width: 70%;
+}
+.ingame-leaderboard-rightSide{
+    justify-content:flex-end;
+}
+.ingame-leaderboard-leftSide img{
+    width: 15%;
+}
+.ingame-leaderboard-first{
+    color: gold;
+}
+.ingame-leaderboard-second{
+    color: silver;
+}
+.ingame-leaderboard-third{
+    color: #CD7F32;
+}
+.ingame-leaderboard-roundkills{
+    color: rgb(51, 255, 0);
+}
+.ingame-leaderboard-rounddeaths{
+    color: rgb(255, 0, 0);
+}
+.ingame-leaderboard-kdr{
+    color: silver;
+}
+.ingame-leaderboard-level{
+    color: #ff8000;
+}
+/* GUNGAME WINNER */
+#gungame-winner{
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.513);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+#gungame-winner-main{
+    position: relative;
+    width: 50%;
+    height: 60%;
+    border: 1px solid rgba(240, 248, 255, 0.452);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 500px;
+    background: rgba(0, 0, 0, 0.513);
+    font-family: 'Courier New', Courier, monospace;
+}
+#gungame-winner-label{
+    position: absolute;
+    top: 7%;
+    left: 8%;
+    color: #ffc800;
+    font-size: 5.5vh;
+    letter-spacing: 1;
+    font-weight: bold;
+}
+#gungame-winner-label span{
+    color: white;
+    opacity: 0.3;
+    font-size: 3vh;
+    font-weight: bold;
+}
+#gungame-winner-exit{
+    position: absolute;
+    bottom: 3%;
+    left: 15%;
+    color: red;
+    font-size: 3vh;
+    font-weight: bold;
+    border: 1px solid rgba(240, 248, 255, 0.452);
+    padding: 1px 10px;
+}
+#gungame-winner-exit:hover{
+    cursor: pointer;
+    background-color: rgba(90, 91, 92, 0.452);
+}
+#gungame-winner-newround{
+    position: absolute;
+    bottom: 15.5%;
+    left: 7%;
+    color: rgba(34, 255, 0, 0.733);
+    font-size: 2vh;
+    font-weight: bold;
+    padding: 1px 10px;
+    height: 5%;
+    width: 37%;
+}
+#gungame-winner-newround-loading{
+    height: 35%;
+    width: 100%;
+    border-radius: 7px;
+    bottom: 6%;
+    background: rgba(34, 255, 0, 0.3);
+}
+#gungame-winner-newround-progressBar{
+    height: 100%;
+    border-radius: 7px;
+    width: 10%;
+	background: rgba(34, 255, 0, 0.733);
+    color: white;
+    font-size: 20px;
+    text-align: center;
+}
+#gungame-winner-main-leaderboard{
+    width: 35%;
+    height: 40%;
+    margin-left: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    background-color: rgba(0, 0, 0, 0.8);
+    transform: rotateY(10deg);
+    color: white;
+    border: 2px solid rgba(240, 248, 255, 0.452);
+}
+.gungame-winner-main-leaderboard-place{
+    height: 33%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+#gungame-winner-main-leaderboard-first{
+    color: gold;
+}
+#gungame-winner-main-leaderboard-second{
+    color: silver;
+}
+#gungame-winner-main-leaderboard-third{
+    color:#CD7F32;
+}
+#gungame-winner-main-leaderboard-image{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#gungame-winner-main-leaderboard-image img{
+    height: 50%;
+}
+.gungame-winner-main-leaderboard-level{
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    font-size: 2vh;
+    padding-right: 10px;
+}
+#gungame-winner-main-box{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-end;
+    perspective: 200px;
+}
+#gungame-winner-main-box > div{
+    width: 60%;
+    height: 40%;
+    background-color: rgba(0, 0, 0, 0.8);
+    transform: rotateY(-5deg);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border: 2px solid rgba(240, 248, 255, 0.452);
+}
+#gungame-winner-main-box-header{
+    font-size: 2.5vh;
+    text-align: center;
+    color: gold;
+    border-bottom: 3px solid rgba(240, 248, 255, 0.452);
+}
+#gungame-winner-main-box-header .fa-trophy{
+    font-size: 2vh;
+}
+.gungame-winner-main-box-stats{
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    font-size: 1.8vh;
+    padding: 0 5px;
+}
+#gungame-winner-main-box-winner .fa-long-arrow-alt-right,#gungame-winner-main-box-winner span{
+    color: gold;
+}
+#gungame-winner-main-box-player #gungame-winner-main-box-header,#gungame-winner-main-box-player .fa-long-arrow-alt-right,#gungame-winner-main-box-player span{
+    letter-spacing: 1px;
+    color: orangered;
+}
+
+/* GENERAL ONETAP LEADERBOARD */
+#onetap-leaderboard{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    background: rgba(0, 0, 0, 0.8);
+    perspective: 500px;
+}
+#onetap-leaderboard-label{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    height: 100%;
+    top: 3%;
+    color: rgb(255, 119, 0);
+    text-shadow: 0px 0px 5px black;
+    font-size: 3.5vh;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+#onetap-leaderboard-label i{
+    text-shadow: 0px 0px 10px black;
+    font-size: 3.0vh;
+    margin:0px 5px;
+}
+.left-side-onetap-leaderboard-wrapper{
+    transform: rotateY(2deg);
+}
+.right-side-onetap-leaderboard-wrapper{
+    transform: rotateY(-2deg);
+}
+#onetap-leaderboard-wrapper{
+    width: 40%;
+    height: 80%;
+    max-height: fit-content;
+    border: 2px solid rgba(240, 248, 255, 0.452);
+    background: rgba(240, 248, 255, 0.13);
+}
+#onetap-leaderboard-wrapper-header{
+    width: 100%;
+    height: 5%;
+    border-bottom: 2px solid rgba(240, 248, 255, 0.452);
+    display: flex;
+}
+#onetap-leaderboard-wrapper-header div{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5vh;
+    color: gold;
+    text-shadow: 0px 0px 5px black;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+#onetap-leaderboard-wrapper-table{
+    width: 100%;
+    height: 95%;
+    display: flex;
+    flex-direction: column;
+}
+#onetap-leaderboard-wrapper-table-row{
+    width: 100%;
+    height: 4%;
+    border-bottom: 1px solid rgba(240, 248, 255, 0.252);
+    display: flex;
+}
+#onetap-leaderboard-wrapper-table-row div{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.4vh;
+    color: white;
+    letter-spacing: 2px;
+    text-align: center;
+}
+/* SOUNDS */
+#sound-text{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 10%;
+    color: gold;
+    text-shadow: 0px 0px 100px red;
+    font-size: 4vw;
+    letter-spacing: 5px;
+    font-weight: bold;
+}
+
+/* Q EXIT */
+#q-exit{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    left: 0.5%;
+    /* bottom: 22%;
+    left: 2%; */
+    color: rgba(255, 217, 0, 0.715);
+    font-weight: bold;
+    font-size: 1vw;
+}
+#q-exit div i{
+    color: white;
+}
+/* WEAPON DETAILS */
+#weapon-details {
+	font-size:1vw;
+	bottom:1%;
+	left:20%;
+	position:absolute;
+}
+#weapon-details-img {
+	background:  url('../images/weapons/WEAPON_PISTOL.png') center center no-repeat; 
+	background-size: cover; 
+	height:5vh;
+	position:relative;
+}
+#weapon-details-ammo {
+    height: fit-content;
+	font-size:0.9vw;
+	color:rgba(255,255,255,1);
+}
+#weapon-details-ammo-icon {
+	background:  url('../images/ammo.png') center center no-repeat;
+	background-size: cover; 
+	width:1.4vw;
+	height:1.4vw;
+    margin-right: 5px;
+	float:left;
+	filter:drop-shadow(0 0 2px gold);
+}
+
+/* KILL FEED */
+.multipoint {
+	display:none;
+}
+.multipoint#point-8 {
+	display:block;
+	position:absolute;
+	top:50%;
+	left:50%;
+	transform:translateX(-50%) translateY(-50%);
+}
+.multipoint#point-8>img {
+	opacity:0.5;
+}
+.kill-feed {
+	position:absolute;
+	top:10%;
+	right:10px;
+}
+.kill-feed>div {
+	padding:3px 6px 3px 6px;
+	margin:0;
+	display:inline-block;
+	float:left;
+	clear:both;
+	border:2px #32302827 solid;
+	line-height:18px;
+	font-size:15px;
+	font-weight:normal;
+	text-decoration:none;
+	text-align:left;
+	border-radius:4px;
+	background:rgba(0,0,0,0.5);
+	margin-bottom:6px;
+}
+.kill-feed div span {
+	vertical-align:middle;
+}
+.kill-feed div span.weapons>img {
+	border:none;
+	outline:none;
+	vertical-align:middle;
+	margin:0px 3px;
+}
+.kill-feed div>span.player {
+	font-family: 'Rajdhani', sans-serif;
+	font-size:16px;
+	font-weight:bold;
+	margin:0 2px;
+}
+.kill-feed div>span.player.killer {
+	padding-left:2px;
+}
+.kill-feed div>span.player.victim {
+	padding-right:4px;
+}
